@@ -54,20 +54,5 @@ namespace HomeEnergyApi.Controllers
             Place place = await zipCodeLocationService.Report(zipCode);
             return Ok(place);
         }
-
-        [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
-        {
-            try
-            { 
-                var home = repository.RemoveById(id);
-                return Ok(home);
-            }
-            catch (Exception)
-            {
-                return NotFound();
-            }
-
-        }
     }
 }
