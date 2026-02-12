@@ -13,7 +13,7 @@
         - Assert that the newly created home variable is not null
         - Create a second response variable, holding the result of calling `_client.DeleteAsync()` with `"/admin/Homes/$HOME_ID"` given as an argument
             - `$HOME_ID` in that argument should be equal to the `Id` property on your newly created home variable
-        - Assert that the `StatusCode` property on the second response variable is equal to `HttpStatusCode.Created`
+        - Assert that the `StatusCode` property on the second response variable is equal to `HttpStatusCode.Ok`
         - Create a deleted home variable, holding the result of calling `ReadFromJsonAsync<Home>()` on the `Content` property on your second response variable
         - Assert that the deleted home variable is not null
         - Assert that the `Id` property on the deleted home variable is equal to the `Id` property on your created home variable
