@@ -5,8 +5,6 @@
 
 ## Instructions
 
-In this lesson you will be testing the method contained in `HomeEnergyApi/Services/RateLimitingService.cs` where a new method `IsWeekend()` has been added. You will need to create test stubs to test this method, in addition to adding tests to `HomeEnergyApi.Tests/Lesson54Tests/RateLimitingService.Tests.cs`. You should NOT change any test files inside of the `HomeEnergyApi.Tests/GradingTests`, these are used to grade your assignment.
-
 - In `HomeEnergyApi.Tests/Lesson59Tests/Controllers/HomeAdminControllerTest.cs`
     - Create a new public async method `ShouldDeleteHome_WhenGivenValidHomeId()` returning a `Task`
         - Create a new variable for the initial response, holding the result of awaiting `_client.PostAsJsonAsync` with `"/admin/Homes"` and `_homeDto` given as arguments
