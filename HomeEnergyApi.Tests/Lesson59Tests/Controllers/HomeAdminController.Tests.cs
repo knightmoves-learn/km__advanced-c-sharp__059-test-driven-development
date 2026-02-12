@@ -68,4 +68,36 @@ public class HomeAdminControllerTest : UserAcceptanceTest
         
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
     }
+
+    //Fact attribute?
+    [Fact]
+    public async Task ShouldDeleteHome_WhenGivenValidHomeId()
+    {
+        var response = await _client.PostAsJsonAsync("/admin/Homes", _homeDto);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        var home = await response.Content.ReadFromJsonAsync<Home>();
+        Assert.NotNull(home);
+
+        var finalResponse = await _client.DeleteAsync("/admin/Homes/" + home.Id);
+        Assert.Equal(HttpStatusCode.Created, finalResponse.StatusCode);
+        var deletedHome = await finalResponse.Content.ReadFromJsonAsync<Home>();
+        Assert.NotNull(deletedHome);
+        Assert.Equal(home.Id, deletedHome.Id);
+
+    }
+
+    [Fact]
+    public async Task ShouldNotDeleteHome_WhenGivenInvalidHomeId()
+    {
+        var response = await _client.PostAsJsonAsync("/admin/Homes", _homeDto);
+        Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+        var home = await response.Content.ReadFromJsonAsync<Home>();
+        Assert.NotNull(home);
+
+        var invalidId = 100 + home.id;
+
+        var finalResponse = await _client.DeleteAsync("/admin/Homes/" + invalidId);
+        Assert.Equal(HttpStatusCode.NotFound, finalResponse.StatusCode);
+
+    }
 }
